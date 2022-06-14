@@ -72,42 +72,63 @@ console.log(ourTodoList);
 // if its a number, or a string, return the reverse (i.e. 1234 becomes 4321, Name becomes emaN)
 // if its an array, return the reversed array with each element reversed
 
-function reverse(parameter) {
-    if (parameter === true) {
-        argumentReversed = false;
-        return argumentReversed;
-    } else if (parameter === false) {
-        argumentReversed = true;
-        return argumentReversed;
-    } else if (typeof parameter === "number") {
-        var argumentReversed = "";
-        for (num in parameter) {
-            argumentReversed += num;
-        }
-        argumentReversed.reverse();
-        return parseFloat(argumentReversed);
-    } else if (typeof parameter === "string") {
-        for (char of parameter) {
-            argumentReversed += char;
-        }
-        return argumentReversed.reverse();
-    } else if (typeof parameter === "object" && parameter !== null) {
-        parameter.reverse();
-        for (element of parameter) {
-            argumentReversed += element;
-        }
-        return parameter; 
-    } else {
-        return parameter;
-    }
-}
+// function reverse(parameter) {
+//     if (parameter === true) {
+//         argumentReversed = false;
+//         return argumentReversed;
+//     } else if (parameter === false) {
+//         argumentReversed = true;
+//         return argumentReversed;
+//     // } else if (typeof parameter === "number") {
+//     //     var argumentReversed = "";
+//     //     for (num in parameter) {
+//     //         argumentReversed += num;
+//     //     }
+//     //     argumentReversed = argumentReversed.reverse();
+//     //     return parseFloat(argumentReversed);
+//     // } else if (typeof parameter === "string") {
+//     //     for (char of parameter) {
+//     //         argumentReversed += char;
+//     //     }
+//     //     return argumentReversed.reverse();
+//     } else if (typeof parameter === "object" && parameter !== null) {
+//         parameter.reverse();
+//         for (element of parameter) {
+//             element = element.reverse();
+//         }
+//         return parameter; 
+//     } else {
+//         return parameter;
+//     }
+// }
 
-console.log(reverse(12345));
+// var testArray = [12345, 53, 8, 59];
+// console.log(reverse(testArray));
 
 
 // create a function called addingMachine that will add all passed numbers and return the total
 // Note: you don't know how many numbers will be passed
 
+// function addingMachine(array) {
+//     var sum = 0;
+//     for (num of array) {
+//         sum += num;
+//     }
+//     return sum;
+// }
+
+// var newTestArray = [37, 21, 60, 9];
+// console.log(addingMachine(newTestArray));
+
+// Alternate way I tried using reduce //
+function addingMachine(array) {
+    array.reduce(function(total, number) {
+        return total + number;
+    });
+}
+
+var newTestArray = [37, 21, 60, 9];
+console.log(addingMachine(newTestArray));
 
 
 // You just signed a contract as an estimator for a restoration company. 
