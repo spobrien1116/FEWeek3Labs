@@ -74,12 +74,8 @@ console.log(ourTodoList);
 
 
 function reverse(parameter) {
-    if (parameter === true) {
-        argumentReversed = false;
-        return argumentReversed;
-    } else if (parameter === false) {
-        argumentReversed = true;
-        return argumentReversed;
+    if (typeof parameter === "boolean") {
+        return !parameter;
     } else if (typeof parameter === "number") {
         // Turning the number into a string so it can be further manipulated.
         var numberToString = parameter.toString();
@@ -92,7 +88,7 @@ function reverse(parameter) {
         // Turning the string back into a number. Using parseFloat to account for numbers with decimals.
         var stringToNumber = parseFloat(arrayToString);
         // Returning the reversed number.
-        return argumentReversed = stringToNumber;
+        return stringToNumber;
     } else if (typeof parameter === "string") {
         // I wrote this code before the previous else if argument that takes in a number as a parameter.
         // I broke down the string character by character, in reverse, and added those characters into a new string.
@@ -100,13 +96,14 @@ function reverse(parameter) {
         for (var i = 0; i < parameter.length; i++) {
             tempWord = tempWord + parameter.charAt(parameter.length - 1 - i);
         }
-        return argumentReversed = tempWord;
+        return tempWord;
     } else if (typeof parameter === "object" && parameter !== null) {
         var tempReverseArray = [];
-        for (element of parameter) {
+        for (var i = 0; i < parameter.length; i++) {
+            var element = parameter[i];
             if (typeof element === "number")  {
                 // Turning the number into a string so it can be further manipulated.
-                var numberToString = parameter.toString();
+                var numberToString = element.toString();
                 // Turning the string into an array.
                 var stringToArray = numberToString.split("");
                 // Finally being able to reverse the original input, the array is reversed.
@@ -119,7 +116,7 @@ function reverse(parameter) {
                 tempReverseArray.push(stringToNumber);
             } else if (typeof element === "string") {
                 // Turning the string into an array.
-                var stringToArray = numberToString.split("");
+                var stringToArray = element.split("");
                 // Finally being able to reverse the original input, the array is reversed.
                 var reverseTheArray = stringToArray.reverse();
                 // Turning the reversed array back into a string.
@@ -127,28 +124,22 @@ function reverse(parameter) {
                 // Using push, putting the reversed string into the temporary array.
                 tempReverseArray.push(arrayToString);
             } else if (typeof element === "boolean") {
-                if (element === true) {
-                    element = false;
-                    tempReverseArray.push(element);
-                } else {
-                    element = true;
-                    tempReverseArray.push(element);
-                }
+                tempReverseArray.push(!element);
             } else {
                 tempReverseArray.push(element);
             } 
         }
-        parameter.reverse();
-        return parameter; 
+        tempReverseArray.reverse();
+        return tempReverseArray;
     } else {
         return parameter;
     }
 }
 
-var testArray = [12345, 53, true, 8, 59];
+var testArray = [12345, 53, true, "Dog", 8, 59];
 console.log(reverse(true));
 console.log(reverse(testArray));
-console.log(reverse("friends"));
+console.log(reverse("Friends"));
 console.log(reverse(123456.78));
 
 
