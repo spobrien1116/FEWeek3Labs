@@ -72,59 +72,107 @@ console.log(ourTodoList);
 // if its a number, or a string, return the reverse (i.e. 1234 becomes 4321, Name becomes emaN)
 // if its an array, return the reversed array with each element reversed
 
-// function reverse(parameter) {
-//     if (parameter === true) {
-//         argumentReversed = false;
-//         return argumentReversed;
-//     } else if (parameter === false) {
-//         argumentReversed = true;
-//         return argumentReversed;
-//     // } else if (typeof parameter === "number") {
-//     //     var argumentReversed = "";
-//     //     for (num in parameter) {
-//     //         argumentReversed += num;
-//     //     }
-//     //     argumentReversed = argumentReversed.reverse();
-//     //     return parseFloat(argumentReversed);
-//     // } else if (typeof parameter === "string") {
-//     //     for (char of parameter) {
-//     //         argumentReversed += char;
-//     //     }
-//     //     return argumentReversed.reverse();
-//     } else if (typeof parameter === "object" && parameter !== null) {
-//         parameter.reverse();
-//         for (element of parameter) {
-//             element = element.reverse();
-//         }
-//         return parameter; 
-//     } else {
-//         return parameter;
-//     }
-// }
 
-// var testArray = [12345, 53, 8, 59];
-// console.log(reverse(testArray));
+function reverse(parameter) {
+    if (parameter === true) {
+        argumentReversed = false;
+        return argumentReversed;
+    } else if (parameter === false) {
+        argumentReversed = true;
+        return argumentReversed;
+    } else if (typeof parameter === "number") {
+        // Turning the number into a string so it can be further manipulated.
+        var numberToString = parameter.toString();
+        // Turning the string into an array.
+        var stringToArray = numberToString.split("");
+        // Finally being able to reverse the original input, the array is reversed.
+        var reverseTheArray = stringToArray.reverse();
+        // Turning the reversed array back into a string.
+        var arrayToString = reverseTheArray.join("");
+        // Turning the string back into a number. Using parseFloat to account for numbers with decimals.
+        var stringToNumber = parseFloat(arrayToString);
+        // Returning the reversed number.
+        return argumentReversed = stringToNumber;
+    } else if (typeof parameter === "string") {
+        // I wrote this code before the previous else if argument that takes in a number as a parameter.
+        // I broke down the string character by character, in reverse, and added those characters into a new string.
+        var tempWord = "";
+        for (var i = 0; i < parameter.length; i++) {
+            tempWord = tempWord + parameter.charAt(parameter.length - 1 - i);
+        }
+        return argumentReversed = tempWord;
+    } else if (typeof parameter === "object" && parameter !== null) {
+        var tempReverseArray = [];
+        for (element of parameter) {
+            if (typeof element === "number")  {
+                // Turning the number into a string so it can be further manipulated.
+                var numberToString = parameter.toString();
+                // Turning the string into an array.
+                var stringToArray = numberToString.split("");
+                // Finally being able to reverse the original input, the array is reversed.
+                var reverseTheArray = stringToArray.reverse();
+                // Turning the reversed array back into a string.
+                var arrayToString = reverseTheArray.join("");
+                // Turning the string back into a number. Using parseFloat to account for numbers with decimals.
+                var stringToNumber = parseFloat(arrayToString);
+                // Using push, putting the reversed number into the temporary array.
+                tempReverseArray.push(stringToNumber);
+            } else if (typeof element === "string") {
+                // Turning the string into an array.
+                var stringToArray = numberToString.split("");
+                // Finally being able to reverse the original input, the array is reversed.
+                var reverseTheArray = stringToArray.reverse();
+                // Turning the reversed array back into a string.
+                var arrayToString = reverseTheArray.join("");
+                // Using push, putting the reversed string into the temporary array.
+                tempReverseArray.push(arrayToString);
+            } else if (typeof element === "boolean") {
+                if (element === true) {
+                    element = false;
+                    tempReverseArray.push(element);
+                } else {
+                    element = true;
+                    tempReverseArray.push(element);
+                }
+            } else {
+                tempReverseArray.push(element);
+            } 
+        }
+        parameter.reverse();
+        return parameter; 
+    } else {
+        return parameter;
+    }
+}
+
+var testArray = [12345, 53, true, 8, 59];
+console.log(reverse(true));
+console.log(reverse(testArray));
+console.log(reverse("friends"));
+console.log(reverse(123456.78));
 
 
 // create a function called addingMachine that will add all passed numbers and return the total
 // Note: you don't know how many numbers will be passed
 
-// function addingMachine(array) {
-//     var sum = 0;
-//     for (num of array) {
-//         sum += num;
-//     }
-//     return sum;
-// }
+function addingMachine(array) {
+    var sum = 0;
+    for (num of array) {
+        sum += num;
+    }
+    return sum;
+}
 
-// var newTestArray = [37, 21, 60, 9];
-// console.log(addingMachine(newTestArray));
+var newTestArray = [37, 21, 60, 9];
+console.log(addingMachine(newTestArray));
 
 // Alternate way I tried using reduce //
 function addingMachine(array) {
+    var arrayTotal = 0;
     array.reduce(function(total, number) {
-        return total + number;
+        return arrayTotal = total + number;
     });
+    return arrayTotal;
 }
 
 var newTestArray = [37, 21, 60, 9];
@@ -138,3 +186,33 @@ console.log(addingMachine(newTestArray));
 // 40% on all profits above $1,000,000
 // create a function that will allow you to check how much of a bonus you make
 // the function should take in two variables as arguments, grossInvoiced and profitMargin
+
+function checkBonus(gInv, pMarg) {
+    var bonusTotal = 0;
+    var bracketTracker = 0;
+
+    console.log("The gross invoiced was $" + gInv + ".");
+    console.log("The profit margin on these sales was $" + pMarg + ".");
+
+    if (pMarg > 1000000) {
+        bracketTracker = (pMarg - 1000000) * .40;
+        bonus = bracketTracker + 175000 + 80000 + 10000;
+    } else if (pMarg > 500000 && pMarg <= 1000000) {
+        bracketTracker = (pMarg - 500000) * .35;
+        bonus = bracketTracker + 80000 + 10000;
+    } else if (pMarg > 100000 && pMarg <= 500000) {
+        bracketTracker = (pMarg - 100000) * .20;
+        bonus = bracketTracker + 10000;
+    } else if (pMarg > 0 && pMarg <= 100000) {
+        bracketTracker = pMarg * .10;
+        bonus = bracketTracker; 
+    } else {
+        console.log("No profits means no bonus.");
+    }
+
+    return bonus;
+}
+
+var grossInvoiced = 3000000;
+var profitMargin = 50000;
+console.log("You earned a bonus of $" + checkBonus(grossInvoiced, profitMargin) + ".");
